@@ -8,16 +8,12 @@ class GPIOReset:
     def __init__(self, en_pin: int, boot_pin: int):
         self._en_pin = en_pin
         self._boot_pin = boot_pin
-        
         GPIO.setwarnings(False)
-        GPIO.cleanup()
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(self._en_pin, GPIO.OUT)
-        GPIO.setup(self._boot_pin, GPIO.OUT)
+        GPIO.setup(self._boot_pin, GPIO.OUT, initial=GPIO.HIGH)
+        GPIO.setup(self._en_pin, GPIO.OUT, initial=GPIO.HIGH)
 
-        GPIO.output(self._en_pin, GPIO.HIGH)
-        GPIO.output(self._boot_pin, GPIO.HIGH)
-            
+
     def cleanup(self):
         GPIO.cleanup()
 
